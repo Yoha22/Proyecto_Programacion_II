@@ -1,0 +1,6 @@
+NickName, Fall Guys, /Images/Games_images/Ima_Fall_Guys.png
+YOHAN_22, Red Dead, /Images/Games_images/Ima_Red_Dead.png
+JULE, Red Dead, /Images/Games_images/Ima_Red_Dead.png
+NAT_CAT, Red Dead, /Images/Games_images/Ima_Red_Dead.png
+Niño, Red Dead, /Images/Games_images/Ima_Red_Dead.png
+LEO_10, Red Dead, /Images/Games_images/Ima_Red_Dead.png

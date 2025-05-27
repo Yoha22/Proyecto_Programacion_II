@@ -1,0 +1,221 @@
+/*Otros estilos*/
+
+.txt_entrada{
+
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-color: none;
+    -fx-text-fill: #FFFFFF;
+}
+
+.txt_entrada:focused{
+
+    -fx-border-color: #FFFFFF;
+}
+
+.btn_login{
+
+    -fx-background-color: #228B22;
+    -fx-cursor: hand;
+}
+
+.btn_login:hover{
+
+    -fx-background-color: #459D45;
+}
+
+.btn_cancelar{
+
+    -fx-background-color: none;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 1.5px;
+    -fx-cursor: hand;
+}
+
+.btn_cancelar:hover{
+
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #000000;
+}
+/*Otros estilos*/
+
+/*Stiles View_GAME_VERSE*/
+
+.bacgroundNavBar{
+    -fx-background-color:  #013F4C;
+}
+
+.bacgroundBoddy{
+    -fx-background-color: #F4F4F4;
+}
+
+.navFriends{
+    -fx-background-color:  #7EA8B0;
+    -fx-background-radius: 10px;
+}
+
+.btn_nav_bar{
+
+    -fx-background-color: none;
+    -fx-pref-width: 160px;
+    -fx-pref-height: 50px;
+    -fx-cursor: hand;
+}
+
+.btn_nav_bar:hover{
+
+    -fx-background-color: #557F87;
+}
+
+.btn_menu_left{
+
+    -fx-background-color: none;
+    -fx-pref-width: 188px;
+    -fx-pref-height: 72px;
+    -fx-cursor: hand;
+}
+
+.btn_menu_left:hover{
+
+    -fx-background-color: #557F87;
+}
+
+.scroll-pane .scroll-bar:vertical .track {
+
+    -fx-background-color: #F4F4F4;
+}
+
+.scroll-pane .scroll-bar:vertical .thumb {
+
+    -fx-background-color: #CACACA;
+}
+
+.btn_Perfil{
+
+    -fx-background-color: #557f87;
+    -fx-background-radius: 50px;
+}
+
+#panelP{
+
+    -fx-background-color: #557F87;
+    -fx-background-radius: 10px;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+.btnNavF{
+
+    -fx-background-color: none;
+    -fx-background-radius: 8px;
+}
+
+.btnNavF:hover{
+
+    -fx-background-color: #ffffff;
+}
+
+.btnAfter{
+
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8px;
+}
+
+#btnPerfil:hover .text-field{
+
+    -fx-underline: true;
+}
+
+.btn_Relacionado{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+.btn_Relacionado:hover{
+    -fx-background-color: #CACACA;
+}
+
+.juegos{
+
+    -fx-border-color: #000000;
+    -fx-border-radius: 5px;
+}
+.juegos .label{
+
+    -fx-layout-x: 1.0;
+    -fx-layout-y: 21.0;
+    -fx-font-family: "System";
+    -fx-font-weight: bold;
+    -fx-font-size: 14.0;
+    -fx-background-fills: #000000;
+}
+
+.juegos #base {
+
+    -fx-layout-x: 1.0;
+    -fx-layout-y: 21.0;
+    -fx-font-family: "System";
+    -fx-font-weight: bold;
+    -fx-font-size: 10.0;
+    -fx-background-fills: #000000;
+}
+
+#gratis{
+
+    -fx-background-color:  #30B0F9;
+    -fx-background-radius:  4px;
+}
+
+#perfilA{
+
+    -fx-background-radius: 50px;
+}
+
+/*Stilos del panel de los amigos*/
+
+.paneAmigos{
+
+    -fx-background-color: none;
+    -fx-background-radius: 8px;
+}
+
+.paneAmigos #pane{
+
+    -fx-background-color: none;
+    -fx-background-radius: 0 8 8 0;
+}
+
+.paneAmigos #pane:hover{
+
+    -fx-background-color: #88A9AF;
+}
+
+.paneAmigos #pane #labelNick{
+
+    -fx-font-family: "System";
+    -fx-font-weight: bold;
+    -fx-font-size: 14.0;
+    -fx-text-fill: #FFFFFF;
+}
+
+.paneAmigos #button{
+
+    -fx-background-radius: 50px;
+    -fx-background-color: #DF8B3C;
+}
+
+.paneAmigos #button #label2{
+
+    -fx-font-family: "System";
+    -fx-font-weight: bold;
+    -fx-font-size: 25.0;
+    -fx-text-fill: #FFFFFF;
+}
+
+#contAm{
+    -fx-background-color: #557f87;
+}
+/*Stilos del panel de los amigos*/
+/*Stiles View_GAME_VERSE*/
