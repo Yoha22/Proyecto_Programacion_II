@@ -358,7 +358,7 @@ public class Controller_View_GAME_VERSE implements Initializable {
 
     public void cargarAmigos() {
         if (listU == null) {
-            System.err.println("Error: listU es null.");
+            System.err.println("Error: listU es nula.");
             return;
         }
         ObservableList<Nodo_Usuario> aux = listU.getUsuarios();
