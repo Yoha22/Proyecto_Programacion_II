@@ -5,13 +5,19 @@ import Models.EstructurasDeDatos.PilaStack_Juego;
 import Models.ModeloDeDatos;
 import Models.Nodos.Nodo_Juego;
 import Models.Nodos.Nodo_Usuario;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,9 +49,11 @@ import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Controller_View_GAME_VERSE implements Initializable {
 
+    private int indiceCarrusel = 0;
     private final ListaDobleUsuario listU = ModeloDeDatos.obtenerInstancia().getListaU();
     private final PilaStack_Juego pila = ModeloDeDatos.obtenerInstancia().getPilaJ();
     private ObservableList<Pane> amigos;
@@ -53,6 +61,7 @@ public class Controller_View_GAME_VERSE implements Initializable {
     private ObservableList<Pane> jugadores;
     private ObservableList<Pane> filtroJugadores;
     private ObservableList<Pane> enCarrito;
+    private ObservableList<File> carrusel;
 
     @FXML
     private Button btn_carrito;
@@ -129,11 +138,17 @@ public class Controller_View_GAME_VERSE implements Initializable {
     @FXML
     private Button btn_game15;
     @FXML
+    private Button right;
+    @FXML
+    private Button left;
+    @FXML
     private Label labelModoO;
     @FXML
     private ImageView navFriends;
     @FXML
     private ImageView navAddFriends;
+    @FXML
+    private ImageView ImageView_Red = new ImageView();
     @FXML
     private Button btn_Tarjeta;
     @FXML
@@ -231,6 +246,8 @@ public class Controller_View_GAME_VERSE implements Initializable {
     @FXML
     private Pane M_Spider;
     @FXML
+    private Pane contenedorCarrusel;
+    @FXML
     private ScrollPane scrollPaneCarrito;
     @FXML
     private AnchorPane anchorP1;
@@ -292,6 +309,17 @@ public class Controller_View_GAME_VERSE implements Initializable {
     private AnchorPane anchorP4;
     @FXML
     private FlowPane flowpaneGamesBiblioteca;
+    @FXML
+    private VBox miniaturas;
+    @FXML
+    private Pane overlay;
+    @FXML
+    private Pane overlay2;
+
+    FadeTransition fade1 = new FadeTransition(Duration.millis(200), overlay);
+    FadeTransition fade01 = new FadeTransition(Duration.millis(200), overlay);
+    FadeTransition fade2 = new FadeTransition(Duration.millis(200), overlay2);
+    FadeTransition fade02 = new FadeTransition(Duration.millis(200), overlay2);
 
     /**
      * Initializes the controller class.
@@ -306,6 +334,7 @@ public class Controller_View_GAME_VERSE implements Initializable {
         filtroAmigos = FXCollections.observableArrayList();
         jugadores = FXCollections.observableArrayList();
         filtroJugadores = FXCollections.observableArrayList();
+        carrusel = FXCollections.observableArrayList();
 
         anchorP.prefWidthProperty().bind(scrollPane.widthProperty());
         anchorP.prefHeightProperty().bind(scrollPane.heightProperty());
@@ -327,6 +356,41 @@ public class Controller_View_GAME_VERSE implements Initializable {
         pila.cargarJuegos();
         pila.cargarJuegos2();
         pila.cargarJuegos3();
+
+        cargarImagenesCarrusel();
+        actualizarImagenCarrusel();
+        cargarMiniaturas();
+
+        fade1.setFromValue(0);
+        fade1.setToValue(1);
+        fade01.setFromValue(1);
+        fade01.setToValue(0);
+        fade2.setFromValue(0);
+        fade2.setToValue(1);
+        fade02.setFromValue(1);
+        fade02.setToValue(0);
+
+        fade01.setOnFinished(e -> overlay.setVisible(false));
+        fade02.setOnFinished(e -> overlay2.setVisible(false));
+
+        contenedorCarrusel.setOnMouseEntered(e -> {
+            overlay.setVisible(true);
+            overlay2.setVisible(true);
+            fade1.playFromStart();
+            fade2.playFromStart();
+            left.setVisible(true);
+            right.setVisible(true);
+        });
+
+        contenedorCarrusel.setOnMouseExited(e -> {
+            fade01.playFromStart();
+            fade02.playFromStart();
+            left.setVisible(false);
+            right.setVisible(false);
+        });
+
+        overlay.setStyle("-fx-background-color: linear-gradient(to left, rgba(0,0,0,0.5), transparent);");
+        overlay2.setStyle("-fx-background-color: linear-gradient(to right, rgba(0,0,0,0.5), transparent);");
     }
 
     public Label getTxt_btn_P() {
@@ -353,6 +417,59 @@ public class Controller_View_GAME_VERSE implements Initializable {
             miStage.close();
         } catch (IOException ex) {
             Logger.getLogger(Controller_View_GAME_VERSE.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void cargarImagenesCarrusel() {
+        File carpeta = new File("src\\Images\\Images_Carrusel");
+
+        if (carpeta.exists() && carpeta.isDirectory()) {
+            File[] archivos = carpeta.listFiles((dir, name)
+                    -> name.toLowerCase().endsWith(".png") || name.toLowerCase().endsWith(".jpg"));
+
+            if (archivos != null) {
+                carrusel.addAll(Arrays.asList(archivos));
+            }
+        }
+    }
+
+    private void actualizarImagenCarrusel() {
+        try {
+            File imagen = carrusel.get(indiceCarrusel);
+            ImageView_Red.setImage(new Image(new FileInputStream(imagen)));
+        } catch (FileNotFoundException e) {
+            Logger.getLogger(Controller_View_GAME_VERSE.class.getName()).log(Level.SEVERE, "Error al tratar de actualizar el carrusel", e);
+        }
+    }
+
+    private void animarTransicion(boolean haciaDerecha) {
+        TranslateTransition transicion = new TranslateTransition(Duration.millis(300), ImageView_Red);
+        transicion.setFromX(haciaDerecha ? 400 : -400);
+        transicion.setToX(0);
+        transicion.play();
+    }
+
+    public void cargarMiniaturas() {
+        try {
+            for (int i = 0; i < carrusel.size(); i++) {
+                int finalI = i;
+                ImageView thumb = new ImageView(new Image(new FileInputStream(carrusel.get(i))));
+                thumb.setFitWidth(80);
+                thumb.setFitHeight(80);
+                thumb.setPreserveRatio(true);
+                thumb.setStyle("-fx-cursor: hand;");
+                thumb.setOnMouseClicked(e -> {
+                    if (indiceCarrusel != finalI) {
+                        int anterior = indiceCarrusel;
+                        indiceCarrusel = finalI;
+                        animarTransicion(anterior < finalI);
+                        actualizarImagenCarrusel();
+                    }
+                });
+                miniaturas.getChildren().add(thumb);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Controller_View_GAME_VERSE.class.getName()).log(Level.SEVERE, "Error al tratar de cargar miniaturas", ex);
         }
     }
 
@@ -611,7 +728,7 @@ public class Controller_View_GAME_VERSE implements Initializable {
             crearJugadores();
         } else if (e.getSource().equals(btn_Shop)) {
             webView.getEngine().load(null);
-            
+
             if (!scrollPane.isVisible()) {
                 scrollPane.setVisible(true);
                 contenedorApartados.setVisible(false);
@@ -1276,7 +1393,7 @@ public class Controller_View_GAME_VERSE implements Initializable {
                 Nodo_Juego juegoAux = new Nodo_Juego(labelNick.getText(), "Red Dead", "/Images/Games_images/Ima_Red_Dead.png");
                 aux.add(juegoAux);
                 aux2.add(juegoAux);
-                
+
                 pila.guardarJuegos(aux);
                 pila.guardarJuegos3(aux2);
                 pila.cargarJuegos();
@@ -1515,6 +1632,26 @@ public class Controller_View_GAME_VERSE implements Initializable {
             pila.cargarJuegos3();
             flowpaneGamesCarrito.getChildren().clear();
             mostrarJuegosC();
+        }
+    }
+
+    @FXML
+    private void actionCarrusel(ActionEvent event) {
+        Button btn = (Button) event.getSource();
+
+        if (btn == left) {
+            if (indiceCarrusel > 0) {
+                indiceCarrusel--;
+                animarTransicion(false);
+                actualizarImagenCarrusel();
+            }
+
+        } else {
+            if (indiceCarrusel < carrusel.size() - 1) {
+                indiceCarrusel++;
+                animarTransicion(true);
+                actualizarImagenCarrusel();
+            }
         }
     }
 }

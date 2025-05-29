@@ -58,7 +58,6 @@ public class Controller_View_Login implements Initializable {
             iniciarSesion();
 
         } else if (event.getSource() == btn_Registrar) {
-
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/View_Sign_in.fxml"));
                 Parent root = loader.load();

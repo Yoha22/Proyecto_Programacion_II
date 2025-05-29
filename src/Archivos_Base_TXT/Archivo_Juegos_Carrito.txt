@@ -167,3 +167,5 @@ LEO_10, Genshin, /Images/Games_images/Ima_Genshin.png
 LEO_10, F1 24, /Images/Games_images/ma_F1_24.png
 LEO_10, Spider, /Images/Games_images/Ima_Spider_Man.png
 LEO_10, Red Dead, /Images/Games_images/Ima_Red_Dead.png
+YOHAN_22, Red Dead, /Images/Games_images/Ima_Red_Dead.png
+YOHAN_22, Red Dead, /Images/Games_images/Ima_Red_Dead.png
