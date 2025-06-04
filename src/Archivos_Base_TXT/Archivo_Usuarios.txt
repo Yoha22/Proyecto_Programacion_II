@@ -6,6 +6,6 @@ Prueba 3, 1072632634, 3172635253, prueba3@gmail.com, Prueba3, 01234567, .
 Prueba 2, 1072663527, 3153882654, prueba2@gmail.com, Prueba2, 23456789, . 
 Prueba 1, 1073253678, 3152661433, prueba1@gmail.com, Prueba1, 12345678, . 
 User Global, 1064307932, 3224883745, nickname@gmail.com, NickName, 12344321, . 
-Yohan Morelo, 1064307964, 3174661434, yodamoju41@gmail.com, YOHAN_22, N22y1900#, . . Prueba5. JULE. NickName. NAT_CAT
+Yohan Morelo, 1064307964, 3174661434, yodamoju41@gmail.com, YOHAN_22, N22y1900#, . . Prueba5. JULE. NickName
 Camilo Andres Cuello Julio, 1063149149, 3024164529, camiloandrescuellojuli@gmail.com, Niño, andres123, . . YOHAN_22
 Leo Carlos Ospina, 1063135804, 3113746267, leonel@gmail.com, LEO_10, 1234554321, . . YOHAN_22
